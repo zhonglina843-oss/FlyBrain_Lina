@@ -82,6 +82,8 @@ git clone --recurse-submodules https://github.com/zhonglina843-oss/FlyBrain_Lina
 git submodule update --init --recursive
 ```
 
+当前学习路线的第一项官方手动查询见 [docs/step_01_codex_manual_query.md](docs/step_01_codex_manual_query.md)。
+
 ## 与 CTM 项目的连接点
 
 值得比较的不是“谁更像大脑”，而是时间尺度与可训练自由度：固定拓扑、快速状态变化、少量 gain、局部可塑性分别贡献多少性能。这样才能把 FlyBrain 变成 CTM 的可证伪对照，而不是演示性质的类比。
