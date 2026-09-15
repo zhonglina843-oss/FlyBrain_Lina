@@ -29,10 +29,12 @@ def args():
     p.add_argument("--duration-ms", type=float, default=100.0)
     p.add_argument("--input-rate-hz", type=float, default=150.0)
     p.add_argument("--n-input", type=int, default=5)
+    p.add_argument("--source-type", choices=("LC4", "LPLC2", "both"), default="both")
+    p.add_argument("--label", default="lc4_lpl2_local")
     return p.parse_args()
 
 
-def make_subgraph(hops: int):
+def make_subgraph(hops: int, source_type: str):
     comp = pd.read_csv(MODEL_DIR / "Completeness_783.csv", index_col=0)
     edges = pd.read_parquet(
         MODEL_DIR / "Connectivity_783.parquet",
@@ -47,7 +49,8 @@ def make_subgraph(hops: int):
         ],
     )
     candidate = pd.read_csv(CANDIDATES)
-    seeds = candidate.loc[candidate.cell_type.isin(["LC4", "LPLC2"]), "root_id"].astype("int64")
+    source_types = ["LC4", "LPLC2"] if source_type == "both" else [source_type]
+    seeds = candidate.loc[candidate.cell_type.isin(source_types), "root_id"].astype("int64")
     targets = candidate.loc[candidate.cell_type.eq("DNp01"), "root_id"].astype("int64")
     id_to_idx = pd.Series(range(len(comp)), index=comp.index.astype("int64"))
     frontier = set(id_to_idx.loc[id_to_idx.index.intersection(seeds)].tolist())
@@ -82,8 +85,8 @@ def main():
     sys.path.insert(0, str(MODEL_DIR))
     import model
 
-    comp, edges, seeds, targets, layer_sizes, reached = make_subgraph(cfg.hops)
-    work = OUT / "subgraph_tables"
+    comp, edges, seeds, targets, layer_sizes, reached = make_subgraph(cfg.hops, cfg.source_type)
+    work = OUT / "subgraph_tables" / cfg.label
     work.mkdir(parents=True, exist_ok=True)
     comp_path = work / "Completeness_local.csv"
     edge_path = work / "Connectivity_local.parquet"
@@ -94,10 +97,10 @@ def main():
     valid_targets = [int(x) for x in targets if x in comp.index]
     params = model.default_params.copy()
     params.update(t_run=cfg.duration_ms * ms, n_run=1, r_poi=cfg.input_rate_hz * Hz)
-    result_dir = OUT / "results"
+    result_dir = OUT / "results" / cfg.label
     result_dir.mkdir(parents=True, exist_ok=True)
     model.run_exp(
-        "lc4_lplc2_local",
+        cfg.label,
         valid_seeds[: cfg.n_input],
         result_dir,
         comp_path,
@@ -107,7 +110,7 @@ def main():
         n_proc=1,
         force_overwrite=True,
     )
-    spikes = pd.read_parquet(result_dir / "lc4_lplc2_local.parquet")
+    spikes = pd.read_parquet(result_dir / f"{cfg.label}.parquet")
     summary = {
         "model": "official model.py via Brian2",
         "dataset": "FlyWire FAFB v783",
@@ -121,10 +124,9 @@ def main():
         "active_neurons": int(spikes.flywire_id.nunique()) if len(spikes) else 0,
         "note": "Only graph extraction is custom; neuron dynamics and run_exp are official.",
     }
-    (OUT / "summary.json").write_text(json.dumps(summary, indent=2) + "\n", encoding="utf-8")
+    (OUT / f"summary_{cfg.label}.json").write_text(json.dumps(summary, indent=2) + "\n", encoding="utf-8")
     print(json.dumps(summary, indent=2))
 
 
 if __name__ == "__main__":
     main()
-
