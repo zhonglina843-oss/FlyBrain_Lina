@@ -92,6 +92,25 @@ purpose: manual candidate-pathway audit
 
 以及上面的 A-C 三张表。链接可复查、数据集版本完整，比截图数量更重要。
 
+## 服务器自动查询（推荐）
+
+手动 Codex 适合第一次理解和可视化；批量查询使用官方 `CAVEclient` 更高效。项目中的 `scripts/query_flywire_looming_edges.py` 会读取已经收集的 104 个 `LC4`、210 个 `LPLC2` 和 2 个 `DNp01` root ID，一次查询所有直接突触，再生成按神经元对和按类型汇总的 CSV。
+
+首次需要你自己登录官方 CAVE 页面并生成个人 token：
+
+```text
+https://prod.flywire-daf.com/materialize/views/datastack/flywire_fafb_public
+```
+
+token 仅在服务器当前 shell 作为 `FLYWIRE_CAVE_TOKEN` 使用，不写入 `.env`、脚本或 Git。随后运行：
+
+```bash
+python -m pip install -r requirements-flywire-cave.txt
+FLYWIRE_CAVE_TOKEN='你的token' python scripts/query_flywire_looming_edges.py
+```
+
+输出 CSV 是实验中可复查的直接连接表。它仍然只表示自动检测且经过滤波的化学突触计数，不是生理效能测量。
+
 ## 做完后你应当能回答
 
 1. 这三个名称在官方数据里是否存在，且各自包含多少神经元？
@@ -100,4 +119,3 @@ purpose: manual candidate-pathway audit
 4. 还缺什么，才可以从“候选线路”推到“完整逃逸行为”？
 
 最后一个问题的答案应包括：感觉输入编码、神经动力学参数、VNC/身体、动作读出和行为验证。这些正是第二到第五步要拆开的部分。
-
