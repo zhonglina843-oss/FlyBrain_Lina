@@ -70,6 +70,18 @@ python scripts/neuprint_explore.py partners 5813027016 --direction downstream --
 
 面向组内汇报的演示定义见 [docs/demo_spec.md](docs/demo_spec.md)，服务器部署和 Git 协作方式见 [docs/server_setup.md](docs/server_setup.md)。
 
+三个第三方开源实现已作为固定版本的 Git submodule 放入 `external/`。完整架构流程图、启动顺序、风险边界和微调位置见 [docs/open_source_projects.md](docs/open_source_projects.md)。首次克隆本仓库请使用：
+
+```bash
+git clone --recurse-submodules https://github.com/zhonglina843-oss/FlyBrain_Lina.git
+```
+
+已有克隆使用：
+
+```bash
+git submodule update --init --recursive
+```
+
 ## 与 CTM 项目的连接点
 
 值得比较的不是“谁更像大脑”，而是时间尺度与可训练自由度：固定拓扑、快速状态变化、少量 gain、局部可塑性分别贡献多少性能。这样才能把 FlyBrain 变成 CTM 的可证伪对照，而不是演示性质的类比。

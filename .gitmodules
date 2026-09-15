@@ -1,0 +1,9 @@
+[submodule "external/flywire-browser"]
+	path = external/flywire-browser
+	url = https://github.com/snedea/flybrain.git
+[submodule "external/malecns-game"]
+	path = external/malecns-game
+	url = https://github.com/Jhongdlp/FlyBrain.git
+[submodule "external/flycoinrh"]
+	path = external/flycoinrh
+	url = https://github.com/fruitflydev/flycoinrh.git
