@@ -84,6 +84,8 @@ git submodule update --init --recursive
 
 当前学习路线的第一项官方手动查询见 [docs/step_01_codex_manual_query.md](docs/step_01_codex_manual_query.md)。
 
+五步路线各自的研究目的、输出和边界见 [docs/learning_path_meaning.md](docs/learning_path_meaning.md)。当前已自动生成的官方候选细胞元数据见 [data/processed/official_flywire_looming_candidate_metadata.md](data/processed/official_flywire_looming_candidate_metadata.md)。
+
 ## 与 CTM 项目的连接点
 
 值得比较的不是“谁更像大脑”，而是时间尺度与可训练自由度：固定拓扑、快速状态变化、少量 gain、局部可塑性分别贡献多少性能。这样才能把 FlyBrain 变成 CTM 的可证伪对照，而不是演示性质的类比。

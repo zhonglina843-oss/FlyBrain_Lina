@@ -7,3 +7,15 @@
 [submodule "external/flycoinrh"]
 	path = external/flycoinrh
 	url = https://github.com/fruitflydev/flycoinrh.git
+[submodule "external/official/flyconnectome-tutorials"]
+	path = external/official/flyconnectome-tutorials
+	url = https://github.com/seung-lab/FlyConnectome.git
+[submodule "external/official/flywire-annotations"]
+	path = external/official/flywire-annotations
+	url = https://github.com/flyconnectome/flywire_annotations.git
+[submodule "external/official/drosophila-brain-model"]
+	path = external/official/drosophila-brain-model
+	url = https://github.com/philshiu/Drosophila_brain_model.git
+[submodule "external/official/flyvis"]
+	path = external/official/flyvis
+	url = https://github.com/TuragaLab/flyvis.git
