@@ -9,6 +9,7 @@ from __future__ import annotations
 
 import argparse
 import json
+import sys
 from pathlib import Path
 
 import pandas as pd
@@ -60,6 +61,7 @@ def main() -> None:
     if not CANDIDATES.exists():
         raise SystemExit(f"Missing candidate table: {CANDIDATES}")
 
+    sys.path.insert(0, str(MODEL_DIR))
     import model  # official repository module
 
     candidates = pd.read_csv(CANDIDATES)
@@ -92,4 +94,3 @@ def main() -> None:
 
 if __name__ == "__main__":
     main()
-
