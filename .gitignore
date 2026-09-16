@@ -15,5 +15,7 @@ data/processed/*
 !data/processed/official_lif_chain/*.json
 data/processed/flywire_lc4_lplc2_to_dnp01_edges.csv
 data/processed/flywire_lc4_lplc2_to_dnp01_type_summary.csv
+data/flyvis/*
+!data/flyvis/README.md
 outputs/*
 !outputs/README.md
