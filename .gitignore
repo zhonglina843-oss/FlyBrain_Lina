@@ -10,6 +10,9 @@ data/processed/*
 !data/processed/README.md
 !data/processed/official_flywire_looming_candidate_cells.csv
 !data/processed/official_flywire_looming_candidate_metadata.md
+!data/processed/official_lif_chain/
+!data/processed/official_lif_chain/*.csv
+!data/processed/official_lif_chain/*.json
 data/processed/flywire_lc4_lplc2_to_dnp01_edges.csv
 data/processed/flywire_lc4_lplc2_to_dnp01_type_summary.csv
 outputs/*

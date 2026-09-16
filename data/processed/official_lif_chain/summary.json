@@ -1,0 +1,30 @@
+{
+  "model": "philshiu/Drosophila_brain_model model.py (unchanged dynamics)",
+  "dataset": "official FlyWire FAFB v783 tables bundled by the model authors",
+  "input": {
+    "LC4": 5,
+    "LPLC2": 5,
+    "rate_hz": 150.0
+  },
+  "duration_ms": 100.0,
+  "local_neurons": 1062,
+  "local_edges": 50385,
+  "direct_candidate_edges": 293,
+  "network_spike_rows": 217,
+  "network_active_neurons": 39,
+  "dnp01": [
+    {
+      "root_id": 720575940632499757,
+      "side": "right",
+      "spike_count": 4,
+      "first_spike_seconds": 0.0105
+    },
+    {
+      "root_id": 720575940622838154,
+      "side": "left",
+      "spike_count": 2,
+      "first_spike_seconds": 0.0323
+    }
+  ],
+  "scope": "Artificial optogenetic-style activation; not a visual or behavioral simulation."
+}
