@@ -1,0 +1,27 @@
+{
+  "model": "TuragaLab/flyvis",
+  "pretrained": true,
+  "model_path": "/root/autodl-tmp/FlyBrain_Lina/external/official/flyvis/data/results/flow/0000/000",
+  "device": "cuda:0",
+  "torch": "2.14.0+cu130",
+  "cuda": true,
+  "gpu": "NVIDIA GeForce RTX 4080 SUPER",
+  "n_nodes": 45669,
+  "n_edges": 1513231,
+  "input_shape": [
+    1,
+    20,
+    1,
+    721
+  ],
+  "output_shape": [
+    1,
+    20,
+    45669
+  ],
+  "finite": true,
+  "baseline_mean": 0.37000736594200134,
+  "stimulus_mean": 0.5306900143623352,
+  "recovery_mean": 0.36976972222328186,
+  "mean_frame_change": 0.27371227741241455
+}
